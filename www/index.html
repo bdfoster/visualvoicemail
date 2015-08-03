@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.css"/>
+        <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    </head>
+    <body>
+		<div id="home" data-role="page">
+			<div data-role="header">
+				<a href="#menuPanel" class="ui-btn ui-icon-bars ui-btn-left ui-btn-icon-notext ui-corner-all">Menu</a>
+				<h1>Visual Voicemail</h1>
+				
+				
+				<div data-role="navbar">
+					<ul>
+						<li>
+							<a href="#" id="allCountNav" class="ui-btn-active" onClick="ui.showAllMessages();" data-transition="slide">All (<span id="allCount">--</span>)</a>
+						</li>
+						<li>
+							<a href="#" id="newCountNav" onClick="ui.showNewMessages();" data-transition="slide">New (<span id="newCount">--</span>)</a>
+						</li>
+						<li>
+							<a href="#" id="savedCountNav" onClick="ui.showSavedMessages();" data-transition="slide">Saved (<span id="savedCount">--</span>)</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			
+			<div data-role="panel" id="menuPanel" data-position-fixed="true" data-display="overlay">
+				<div class="ui-panel-inner">
+					<h5>Main Menu</h5>
+					
+					<ul id="menuList" data-inset="false" data-role="listview">
+						<li>
+							<a href="#settings" data-rel="close">Settings</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			
+			<div role="main" class="ui-content">
+				<p class="statusMessage"></p>
+				<ul class=".msg-list" id="msgList" data-inset="false" data-role="listview">
+					
+				</ul>
+			
+			</div>
+		</div>
+		
+		<div id="settings" data-role="page">
+			<div data-role="header">
+				<a id="settingsBack" data-rel="back" href="#" class="btn-back ui-btn ui-icon-back ui-btn-left ui-btn-icon-notext ui-corner-all">Back</a>
+				<h1>Settings</h1>
+				
+			</div>
+			
+			<div role="main" class="ui-content">
+				<p class="statusMessage"></p>
+				<div class="ui-field-contain">
+					<label for="notifyOnNew">Notifications</label>
+					<select name="notifyOnNew" id="notifyOnNew" data-role="slider">
+						<option value="false">Off</option>
+						<option value="true">On</option>
+					</select>
+				</div>
+				
+				<div class="ui-field-contain">
+					<label for="user">PBX Username</label>
+					<input type="text" id="user" name="user">
+				</div>
+				
+				<div class="ui-field-contain">
+					<label for="domain">PBX Domain</label>
+					<input type="text" id="domain" name="domain">
+				</div>
+				
+				<div class="ui-field-contain">
+					<label for="pass">PBX Password</label>
+					<input type="password" id="pass" name="pass">
+				</div>
+				
+				<div class="ui-field-contain">
+					<label for="registrationURI">Registration URI</label>
+					<input type="url" id="registrationURI" name="registrationURI">
+				</div>
+			</div>
+		</div>
+		
+		<div id="msgDetail" data-role="page">
+			<div data-role="header">
+				<a id="msgDetailBack" data-rel="back" data-transition="flip" data-direction="reverse" href="#" class="btn-back ui-btn ui-icon-back ui-btn-left ui-btn-icon-notext ui-corner-all">Back</a>
+				<h1>Message Detail</h1>
+			</div>
+			
+			<div role="main" class="ui-content">
+				<ul id="msgList" data-inset="true" data-role="listview">
+					<li>
+						<a href="#" class="ui-btn">
+							<h3>From: <span id="messageCallerName"></span> (<span id="messageCallerNumber">---</span>)</h3>
+							<p>Received on <span id="messageReceived"></span></p>
+							<p><span id="messageDuration"></span> seconds long</p>
+						</a>
+					</li>
+					<li>
+						<input type="range" id="messageSlider" value="0" min="0" max="100" data-highlight="true" class="ui-slider-input">
+					</li>
+					<li>
+						<div class="ui-grid-a">
+							<div class="ui-block-a">
+								<a id="playMessage" href="#" class="ui-btn">Play</a>
+							</div>
+							
+							<div class="ui-block-b">
+								<a id="deleteMessage" href="#" class="ui-btn">Delete</a>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			
+		</div>
+        
+        
+        <!-- Javascript files at bottom of body tag, better load times -->
+        <script type="text/javascript" src="cordova.js"></script>
+		<script type="text/javascript" src="js/device.js"></script>
+        <script type="text/javascript" src="js/PushNotification.js"></script>
+		<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+        <script type="text/javascript" src="js/moment.min.js"></script>
+        <script type="text/javascript" src="js/message.js"></script>
+        <script type="text/javascript" src="js/ui.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+    </body>
+</html>
